@@ -1,0 +1,34 @@
+package com.example.android.contacts;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class AddContacts extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_contacts);
+    }
+
+    public void addContact(View view) {
+        EditText editText = (EditText) findViewById(R.id.add_contact_name);
+        EditText editText1 = (EditText) findViewById(R.id.add_contact_number);
+        String name = editText.getText().toString();
+        String number = editText1.getText().toString();
+        DatabaseHandler databaseHandler = new DatabaseHandler(this);
+        databaseHandler.addContact(new Contact(name, number));
+        Toast.makeText(this, "New Contact Added", Toast.LENGTH_SHORT).show();
+
+        /*List<Contact> contacts = databaseHandler.getAllContacts();
+
+        for (Contact cn : contacts) {
+            String log = "Name: " + cn.getName() + ", Phone: " + cn.getPhoneNumber();
+            // Writing Contacts to log
+            Log.d("Contact: ", log);
+        }*/
+    }
+}
