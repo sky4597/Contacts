@@ -2,9 +2,9 @@ package com.example.android.contacts;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -15,6 +15,8 @@ public class DisplayContacts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_contacts);
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
+        TextView contact_count = (TextView) findViewById(R.id.contact_count);
+        contact_count.setText("You have " + databaseHandler.getContactsCount() + " contact(s)");
         ArrayList<Contact> contacts = databaseHandler.getAllContacts();
         ArrayList<String> arrayList = new ArrayList<>();
         for (Contact cn : contacts) {
@@ -24,7 +26,7 @@ public class DisplayContacts extends AppCompatActivity {
             listView.setAdapter(arrayAdapter);
             String log = "Name: " + cn.getName() + ", Phone: " + cn.getPhoneNumber();
             //Writing Contacts to log
-            Log.d("Contact: ", log);
+            //Log.d("Contact: ", log);
         }
         //String array = new String(contacts.toString());
         // ListView listView = (ListView) findViewById(R.id.listview_contact);

@@ -17,7 +17,6 @@
         </activity>
         <activity android:name=".AddContacts" />
         <activity android:name=".DisplayContacts" />
-        <activity android:name=".DeleteContacts"></activity>
     </application>
 
 </manifest>

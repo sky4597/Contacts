@@ -8,24 +8,24 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-class DatabaseHandler extends SQLiteOpenHelper {
+class FavouritesDatabaseHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "contacts_list";
+    private static final String DATABASE_NAME = "favourites_contacts_list";
 
     // Contacts table name
-    private static final String TABLE_CONTACTS = "contacts";
+    private static final String TABLE_CONTACTS = "favourite_contacts";
 
     // Contacts Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
     private static final String KEY_PH_NO = "phone_number";
 
-    DatabaseHandler(Context context) {
+    FavouritesDatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -129,14 +129,13 @@ class DatabaseHandler extends SQLiteOpenHelper {
 
 
     // Getting contacts Count
-    int getContactsCount() {
+    public int getContactsCount() {
         String countQuery = "SELECT  * FROM " + TABLE_CONTACTS;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
-        int count = cursor.getCount();
         cursor.close();
 
         // return count
-        return count;
+        return cursor.getCount();
     }
 }

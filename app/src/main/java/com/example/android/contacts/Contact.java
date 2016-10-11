@@ -1,11 +1,14 @@
 package com.example.android.contacts;
 
 
+import android.media.Image;
+
 public class Contact {
+    Image image;
     //private variables
     private int _id;
     private String _name;
-    private String _phone_number;
+    private long _phone_number;
 
     // Empty constructor
     public Contact() {
@@ -13,14 +16,14 @@ public class Contact {
     }
 
     // constructor
-    public Contact(int id, String name, String _phone_number) {
+    public Contact(int id, String name, long _phone_number) {
         this._id = id;
         this._name = name;
         this._phone_number = _phone_number;
     }
 
     // constructor
-    public Contact(String name, String _phone_number) {
+    public Contact(String name, long _phone_number) {
         this._name = name;
         this._phone_number = _phone_number;
     }
@@ -46,12 +49,12 @@ public class Contact {
     }
 
     // getting phone number
-    String getPhoneNumber() {
+    long getPhoneNumber() {
         return this._phone_number;
     }
 
     // setting phone number
-    void setPhoneNumber(String phone_number) {
+    void setPhoneNumber(long phone_number) {
         this._phone_number = phone_number;
     }
 }

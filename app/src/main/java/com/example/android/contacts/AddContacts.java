@@ -14,13 +14,19 @@ public class AddContacts extends AppCompatActivity {
         setContentView(R.layout.activity_add_contacts);
     }
 
-    public void addContact(View view) {
-        EditText editText = (EditText) findViewById(R.id.add_contact_name);
-        EditText editText1 = (EditText) findViewById(R.id.add_contact_number);
-        String name = editText.getText().toString();
-        String number = editText1.getText().toString();
+    public void addContact(View view) throws NumberFormatException {
+        EditText name_editText = (EditText) findViewById(R.id.add_contact_name);
+        EditText phone_editText = (EditText) findViewById(R.id.add_contact_number);
+        String name = name_editText.getText().toString();
+        //try
+        long number = Long.parseLong(phone_editText.getText().toString());
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
         databaseHandler.addContact(new Contact(name, number));
+        //}
+        // catch (NumberFormatException number)
+        {
+
+        }
         Toast.makeText(this, "New Contact Added", Toast.LENGTH_SHORT).show();
 
         /*List<Contact> contacts = databaseHandler.getAllContacts();
