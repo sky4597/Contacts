@@ -43,7 +43,7 @@
         android:inputType="phone" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/final_add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/add_contact_number"

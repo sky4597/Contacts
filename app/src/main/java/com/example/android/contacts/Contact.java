@@ -1,10 +1,7 @@
 package com.example.android.contacts;
 
 
-import android.media.Image;
-
 public class Contact {
-    Image image;
     //private variables
     private int _id;
     private String _name;

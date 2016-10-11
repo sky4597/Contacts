@@ -12,7 +12,7 @@ class FavouritesDatabaseHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "favourites_contacts_list";
@@ -129,13 +129,14 @@ class FavouritesDatabaseHandler extends SQLiteOpenHelper {
 
 
     // Getting contacts Count
-    public int getContactsCount() {
+    int getContactsCount() {
         String countQuery = "SELECT  * FROM " + TABLE_CONTACTS;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
         cursor.close();
 
         // return count
-        return cursor.getCount();
+        return count;
     }
 }

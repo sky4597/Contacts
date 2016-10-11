@@ -38,5 +38,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="21dp"
         android:onClick="displayContacts"
-        android:text="List Contacts" />
+        android:text="View Contacts" />
+
+    <Button
+        android:id="@+id/list_favourites_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/list_contacts_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:onClick="displayFavourites"
+        android:text="View Favourites" />
 </RelativeLayout>
