@@ -18,9 +18,10 @@ public class AddContacts extends AppCompatActivity {
         EditText name_editText = (EditText) findViewById(R.id.add_contact_name);
         EditText phone_editText = (EditText) findViewById(R.id.add_contact_number);
         EditText email_editText = (EditText) findViewById(R.id.add_contact_email);
-        final String name = name_editText.getText().toString();
-        final long number = Long.parseLong(phone_editText.getText().toString());
-        final String email = email_editText.getText().toString();
+        final String name = name_editText.getText().toString().trim();
+        //Remove all whitespaces; guess I really shouldn't be using long but whatever
+        final long number = Long.parseLong(phone_editText.getText().toString().replaceAll("\\s+", ""));
+        final String email = email_editText.getText().toString().trim();
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
         databaseHandler.addContact(new Contact(name, number, email));
         Toast.makeText(this, "New Contact Added", Toast.LENGTH_SHORT).show();

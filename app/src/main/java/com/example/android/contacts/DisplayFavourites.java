@@ -40,7 +40,7 @@ public class DisplayFavourites extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.listview_contact);
         for (final Contact cn : contacts) {
-            arrayList.add("ID: " + cn.getID() + ", Name: " + cn.getName() +
+            arrayList.add("Name: " + cn.getName() +
                     ", Phone: " + cn.getPhoneNumber() + ", Email: " + cn.getEmail());
             //String log = "Name: " + cn.getName() + ", Phone: " + cn.getPhoneNumber();
             //Writing Contacts to log
