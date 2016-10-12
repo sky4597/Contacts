@@ -104,18 +104,31 @@ public class DisplayFavourites extends AppCompatActivity {
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 } else if (which == 2) {
-                                    Intent email_intent = new Intent(Intent.ACTION_SENDTO);
-                                    email_intent.setData(Uri.parse("mailto:" + email));
+                                    if (!email.isEmpty()) {
+                                        Intent email_intent = new Intent(Intent.ACTION_SENDTO);
+                                        email_intent.setData(Uri.parse("mailto:" + email));
 
-                                    //Verify if there is an email app
-                                    if (email_intent.resolveActivity(getPackageManager()) != null) {
-                                        startActivity(email_intent);
+                                        //Verify if there is an email app
+                                        if (email_intent.resolveActivity(getPackageManager()) != null) {
+                                            startActivity(email_intent);
+                                        } else {
+                                            Toast.makeText(context,
+                                                    "You do not have an app that can send emails",
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
                                     } else {
                                         Toast.makeText(context,
-                                                "You do not have an app that can send emails",
+                                                "Add an email first",
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }
+                            }
+                        }).setPositiveButton("Dismiss",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                dialog.dismiss();
                             }
                         });
                 // create alert dialog
