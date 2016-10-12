@@ -22,7 +22,6 @@ import java.util.ArrayList;
 
 public class DisplayContacts extends AppCompatActivity {
 
-    static int permission = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +41,6 @@ public class DisplayContacts extends AppCompatActivity {
         for (final Contact cn : contacts) {
             arrayList.add("Name: " + cn.getName() +
                     ", Phone: " + cn.getPhoneNumber() + ", Email: " + cn.getEmail());
-            //String log = "Name: " + cn.getName() + ", Phone: " + cn.getPhoneNumber();
-            //Writing Contacts to log
-            //Log.d("Contact: ", log);
         }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.contacts, R.id.contact_textview, arrayList);
@@ -67,8 +63,7 @@ public class DisplayContacts extends AppCompatActivity {
                 //create a dialog
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                 //Request for calling permissions
-                ActivityCompat.requestPermissions(DisplayContacts.this, new String[]{Manifest.permission.CALL_PHONE},
-                        permission = 0);
+                ActivityCompat.requestPermissions(DisplayContacts.this, new String[]{Manifest.permission.CALL_PHONE}, 0);
                 alertDialogBuilder.setTitle("Options")
                         .setItems(options, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -143,32 +138,6 @@ public class DisplayContacts extends AppCompatActivity {
                 alertDialog.show();
 
             }
-
-
-
-                /*Contact contact = databaseHandler.getContact(position+1);
-                String no = Long.toString(contact.getPhoneNumber());
-                Toast.makeText(getBaseContext(), no , Toast.LENGTH_LONG).show();*/
         });
     }
-    //long phone_number = contact.getPhoneNumber();
-    //String array = new String(contacts.toString());
-    // ListView listView = (ListView) findViewById(R.id.listview_contact);
-        /*TextView stringTextView = (TextView) findViewById(R.id.final_tv);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>
-                (this, R.layout.contacts, R.id.contact_textview, contacts.toString());
-        ListView listView = (ListView) findViewById(R.id.listview_contact);
-        listView.setAdapter(arrayAdapter);
-        for(Contact contact: contacts){
-            stringTextView.setText("Name: " + contact.getName() + " Phone: " + contact.getPhoneNumber());
-        }*/
-        /*ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.contacts, R.id.contact_textview, contacts);
-        ListView listView = (ListView) findViewById(R.id.listview_contact);
-        listView.setAdapter(arrayAdapter);*/
-
-        /*for (Contact cn : contacts) {
-            String log = "Name: " + cn.getName() + ", Phone: " + cn.getPhoneNumber();
-            // Writing Contacts to log
-            Log.d("Contact: ", log);
-        }*/
 }

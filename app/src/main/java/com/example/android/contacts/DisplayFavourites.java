@@ -42,9 +42,6 @@ public class DisplayFavourites extends AppCompatActivity {
         for (final Contact cn : contacts) {
             arrayList.add("Name: " + cn.getName() +
                     ", Phone: " + cn.getPhoneNumber() + ", Email: " + cn.getEmail());
-            //String log = "Name: " + cn.getName() + ", Phone: " + cn.getPhoneNumber();
-            //Writing Contacts to log
-            //Log.d("Contact: ", log);
         }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.contacts, R.id.contact_textview, arrayList);
@@ -145,24 +142,4 @@ public class DisplayFavourites extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), no , Toast.LENGTH_LONG).show();*/
         });
     }
-    //long phone_number = contact.getPhoneNumber();
-    //String array = new String(contacts.toString());
-    // ListView listView = (ListView) findViewById(R.id.listview_contact);
-        /*TextView stringTextView = (TextView) findViewById(R.id.final_tv);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>
-                (this, R.layout.contacts, R.id.contact_textview, contacts.toString());
-        ListView listView = (ListView) findViewById(R.id.listview_contact);
-        listView.setAdapter(arrayAdapter);
-        for(Contact contact: contacts){
-            stringTextView.setText("Name: " + contact.getName() + " Phone: " + contact.getPhoneNumber());
-        }*/
-        /*ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.contacts, R.id.contact_textview, contacts);
-        ListView listView = (ListView) findViewById(R.id.listview_contact);
-        listView.setAdapter(arrayAdapter);*/
-
-        /*for (Contact cn : contacts) {
-            String log = "Name: " + cn.getName() + ", Phone: " + cn.getPhoneNumber();
-            // Writing Contacts to log
-            Log.d("Contact: ", log);
-        }*/
 }

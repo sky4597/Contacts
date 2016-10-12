@@ -33,12 +33,5 @@ public class AddContacts extends AppCompatActivity {
         } catch (NumberFormatException npe) {
             phone_editText.setError("Add a number");
         }
-        /*List<Contact> contacts = databaseHandler.getAllContacts();
-
-        for (Contact cn : contacts) {
-            String log = "Name: " + cn.getName() + ", Phone: " + cn.getPhoneNumber();
-            // Writing Contacts to log
-            Log.d("Contact: ", log);
-        }*/
     }
 }
