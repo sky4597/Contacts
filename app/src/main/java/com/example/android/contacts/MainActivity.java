@@ -13,17 +13,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    // Start add contact activity
     public void addContact(View view) {
         Intent addContactActivity = new Intent(this, AddContacts.class);
         startActivity(addContactActivity);
 
     }
 
+    // Start display contacts activity
     public void displayContacts(View view) {
         Intent displayContactActivity = new Intent(this, DisplayContacts.class);
         startActivity(displayContactActivity);
     }
 
+    // Start display favourites activity
     public void displayFavourites(View view) {
         Intent displayFavouritesActivity = new Intent(this, DisplayFavourites.class);
         startActivity(displayFavouritesActivity);

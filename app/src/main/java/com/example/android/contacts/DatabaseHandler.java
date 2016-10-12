@@ -80,7 +80,7 @@ class DatabaseHandler extends SQLiteOpenHelper {
                 cursor.getString(1), (Long.parseLong(cursor.getString(2))),
                 cursor.getString(3));
         cursor.close();
-        // return contact
+        // Return contact
         return contact;
     }
 
@@ -93,7 +93,7 @@ class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
+        // Looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
                 Contact contact = new Contact();
@@ -106,32 +106,9 @@ class DatabaseHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         cursor.close();
-        // return contact list
+        // Return contact list
         return contactList;
     }
-
-    // Updating single contact
-    public int updateContact(Contact contact) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_NAME, contact.getName());
-        values.put(KEY_PH_NO, contact.getPhoneNumber());
-        values.put(KEY_EMAIL, contact.getEmail());
-
-        // updating row
-        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?",
-                new String[]{String.valueOf(contact.getID())});
-    }
-
-    // Deleting single contact
-    public void deleteContact(Contact contact) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_CONTACTS, KEY_ID + " = ?",
-                new String[]{String.valueOf(contact.getID())});
-        db.close();
-    }
-
 
     // Getting contacts Count
     int getContactsCount() {
@@ -141,7 +118,7 @@ class DatabaseHandler extends SQLiteOpenHelper {
         int count = cursor.getCount();
         cursor.close();
 
-        // return count
+        // Return count
         return count;
     }
 }

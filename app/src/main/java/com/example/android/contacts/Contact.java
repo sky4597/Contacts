@@ -2,7 +2,8 @@ package com.example.android.contacts;
 
 
 public class Contact {
-    //private variables
+
+    // Private variables
     private int _id;
     private String _name;
     private long _phone_number;
@@ -13,7 +14,7 @@ public class Contact {
 
     }
 
-    // constructor
+    // Constructor
     public Contact(int id, String name, long _phone_number, String email) {
         this._id = id;
         this._name = name;
@@ -21,47 +22,49 @@ public class Contact {
         this._email = email;
     }
 
-    // constructor
+    // Constructor
     public Contact(String name, long _phone_number, String _email) {
         this._name = name;
         this._phone_number = _phone_number;
         this._email = _email;
     }
 
-    // getting ID
+    // Getting ID
     int getID() {
         return this._id;
     }
 
-    // setting id
+    // Setting ID
     void setID(int id) {
         this._id = id;
     }
 
-    // getting name
+    // Getting name
     public String getName() {
         return this._name;
     }
 
-    // setting name
+    // Setting name
     public void setName(String name) {
         this._name = name;
     }
 
-    // getting phone number
+    // Getting phone number
     long getPhoneNumber() {
         return this._phone_number;
     }
 
-    // setting phone number
+    // Setting phone number
     void setPhoneNumber(long phone_number) {
         this._phone_number = phone_number;
     }
 
+    // Getting email
     String getEmail() {
         return this._email;
     }
 
+    // Setting email
     void setEmail(String email) {
         this._email = email;
     }

@@ -22,12 +22,11 @@ import java.util.ArrayList;
 
 public class DisplayFavourites extends AppCompatActivity {
 
-    static int permission = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_contacts);
+        // Get context for later use
         final Context context = this;
         final FavouritesDatabaseHandler favouritesDatabaseHandler = new FavouritesDatabaseHandler(this);
         TextView contact_count = (TextView) findViewById(R.id.contact_count);
@@ -35,50 +34,48 @@ public class DisplayFavourites extends AppCompatActivity {
 
         // Create an array list of contacts
         ArrayList<Contact> contacts = favouritesDatabaseHandler.getAllContacts();
-        //Create a string array list to store
+        // Create a string array list to store
         ArrayList<String> arrayList = new ArrayList<>();
 
         ListView listView = (ListView) findViewById(R.id.listview_contact);
         for (final Contact cn : contacts) {
-            arrayList.add("Name: " + cn.getName() +
-                    ", Phone: " + cn.getPhoneNumber() + ", Email: " + cn.getEmail());
+            arrayList.add("Name: " + cn.getName() + ", Phone: " + cn.getPhoneNumber() + ", Email: " + cn.getEmail());
         }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.contacts, R.id.contact_textview, arrayList);
-        //Attach arrayAdapter to the listview
+        // Attach arrayAdapter to the listview
         listView.setAdapter(arrayAdapter);
 
-        //If a list item has been clicked
+        // If a list item has been clicked
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
                 String options[] = {"Call", "Message", "Send email"};
-                //Positions start from 1, IDs from 0
+                // Positions start from 1, IDs from 0
                 final Contact contact = favouritesDatabaseHandler.getContact(position + 1);
-                //Get phone number! This is a contacts app, of course
+                // Get phone number! This is a contacts app, of course
                 final String no = Long.toString(contact.getPhoneNumber());
-                //Get email
+                // Get email
                 final String email = contact.getEmail();
-                //create a dialog
+                // create a dialog
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                //Request for calling permissions
-                ActivityCompat.requestPermissions(DisplayFavourites.this, new String[]{Manifest.permission.CALL_PHONE},
-                        permission = 0);
+                // Request permissions to be able to call
+                ActivityCompat.requestPermissions(DisplayFavourites.this, new String[]{Manifest.permission.CALL_PHONE}, 0);
                 alertDialogBuilder.setTitle("Options")
                         .setItems(options, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // The 'which' argument contains the index position
                                 // of the selected item
                                 if (which == 0) {
-                                    //Check if the CALL_PHONE permission has been granted
+                                    // Check if the CALL_PHONE permission has been granted
                                     if (ContextCompat.checkSelfPermission(context,
                                             Manifest.permission.CALL_PHONE)
                                             == PackageManager.PERMISSION_GRANTED) {
                                         Intent call_intent = new Intent(Intent.ACTION_CALL);
                                         call_intent.setData(Uri.parse("tel:" + no));
-                                        //Verify if there is a phone app
+                                        // Verify if there is a phone app
                                         if (call_intent.resolveActivity(getPackageManager()) != null) {
                                             startActivity(call_intent);
                                         } else {
@@ -92,7 +89,7 @@ public class DisplayFavourites extends AppCompatActivity {
                                     Intent message_intent = new Intent(Intent.ACTION_SENDTO);
                                     message_intent.setData(Uri.parse("smsto:" + no));
 
-                                    //Verify if there is a messaging app
+                                    // Verify if there is a messaging app
                                     if (message_intent.resolveActivity(getPackageManager()) != null) {
                                         startActivity(message_intent);
                                     } else {
@@ -105,7 +102,7 @@ public class DisplayFavourites extends AppCompatActivity {
                                         Intent email_intent = new Intent(Intent.ACTION_SENDTO);
                                         email_intent.setData(Uri.parse("mailto:" + email));
 
-                                        //Verify if there is an email app
+                                        // Verify if there is an email app
                                         if (email_intent.resolveActivity(getPackageManager()) != null) {
                                             startActivity(email_intent);
                                         } else {
@@ -128,9 +125,9 @@ public class DisplayFavourites extends AppCompatActivity {
                                 dialog.dismiss();
                             }
                         });
-                // create alert dialog
+                // Create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
-                // show it
+                // Show it
                 alertDialog.show();
 
             }
