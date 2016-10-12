@@ -42,13 +42,25 @@
         android:hint="Enter phone number"
         android:inputType="phone" />
 
-    <Button
-        android:id="@+id/final_add_button"
+    <EditText
+        android:id="@+id/add_contact_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/add_contact_number"
         android:layout_below="@+id/add_contact_number"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="27dp"
+        android:ems="10"
+        android:hint="Enter email"
+        android:inputType="textEmailAddress" />
+
+    <Button
+        android:id="@+id/final_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/add_contact_email"
+        android:layout_below="@+id/add_contact_email"
+        android:layout_marginTop="32dp"
         android:onClick="addContact"
         android:text="Add" />
+
 </RelativeLayout>

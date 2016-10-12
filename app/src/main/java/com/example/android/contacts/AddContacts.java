@@ -20,10 +20,12 @@ public class AddContacts extends AppCompatActivity {
     public void addContact(View view) throws NumberFormatException {
         EditText name_editText = (EditText) findViewById(R.id.add_contact_name);
         EditText phone_editText = (EditText) findViewById(R.id.add_contact_number);
+        EditText email_editText = (EditText) findViewById(R.id.add_contact_email);
         final String name = name_editText.getText().toString();
         final long number = Long.parseLong(phone_editText.getText().toString());
+        final String email = email_editText.getText().toString();
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
-        databaseHandler.addContact(new Contact(name, number));
+        databaseHandler.addContact(new Contact(name, number, email));
         Toast.makeText(this, "New Contact Added", Toast.LENGTH_SHORT).show();
         final Context context = this;
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -31,7 +33,7 @@ public class AddContacts extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         FavouritesDatabaseHandler favouritesDatabaseHandler = new FavouritesDatabaseHandler(context);
-                        favouritesDatabaseHandler.addContact(new Contact(name, number));
+                        favouritesDatabaseHandler.addContact(new Contact(name, number, email));
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

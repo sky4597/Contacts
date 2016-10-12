@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class DisplayContacts extends AppCompatActivity {
+public class DisplayFavourites extends AppCompatActivity {
 
     static int permission = 1;
 
@@ -29,12 +29,12 @@ public class DisplayContacts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_contacts);
         final Context context = this;
-        final DatabaseHandler databaseHandler = new DatabaseHandler(this);
+        final FavouritesDatabaseHandler favouritesDatabaseHandler = new FavouritesDatabaseHandler(this);
         TextView contact_count = (TextView) findViewById(R.id.contact_count);
-        contact_count.setText("You have " + databaseHandler.getContactsCount() + " contact(s)");
+        contact_count.setText("You have " + favouritesDatabaseHandler.getContactsCount() + " favourites(s)");
 
         // Create an array list of contacts
-        ArrayList<Contact> contacts = databaseHandler.getAllContacts();
+        ArrayList<Contact> contacts = favouritesDatabaseHandler.getAllContacts();
         //Create a string array list to store
         ArrayList<String> arrayList = new ArrayList<>();
 
@@ -59,7 +59,7 @@ public class DisplayContacts extends AppCompatActivity {
 
                 String options[] = {"Call", "Message", "Send email"};
                 //Positions start from 1, IDs from 0
-                final Contact contact = databaseHandler.getContact(position + 1);
+                final Contact contact = favouritesDatabaseHandler.getContact(position + 1);
                 //Get phone number! This is a contacts app, of course
                 final String no = Long.toString(contact.getPhoneNumber());
                 //Get email
@@ -67,7 +67,7 @@ public class DisplayContacts extends AppCompatActivity {
                 //create a dialog
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                 //Request for calling permissions
-                ActivityCompat.requestPermissions(DisplayContacts.this, new String[]{Manifest.permission.CALL_PHONE},
+                ActivityCompat.requestPermissions(DisplayFavourites.this, new String[]{Manifest.permission.CALL_PHONE},
                         permission = 0);
                 alertDialogBuilder.setTitle("Options")
                         .setItems(options, new DialogInterface.OnClickListener() {

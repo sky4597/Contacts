@@ -24,6 +24,7 @@ class FavouritesDatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
     private static final String KEY_PH_NO = "phone_number";
+    private static final String KEY_EMAIL = "email";
 
     FavouritesDatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -33,8 +34,8 @@ class FavouritesDatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
-                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_PH_NO + " TEXT" + ")";
+                + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_NAME + " TEXT,"
+                + KEY_PH_NO + " LONG," + KEY_EMAIL + " TEXT" + ")";
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
 
@@ -59,6 +60,7 @@ class FavouritesDatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, contact.getName()); // Contact Name
         values.put(KEY_PH_NO, contact.getPhoneNumber()); // Contact Phone
+        values.put(KEY_EMAIL, contact.getEmail());
 
         // Inserting Row
         db.insert(TABLE_CONTACTS, null, values);
@@ -70,12 +72,13 @@ class FavouritesDatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_CONTACTS, new String[]{KEY_ID,
-                        KEY_NAME, KEY_PH_NO}, KEY_ID + "=?",
+                        KEY_NAME, KEY_PH_NO, KEY_EMAIL}, KEY_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
         Contact contact = new Contact(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), (Long.parseLong(cursor.getString(2))));
+                cursor.getString(1), (Long.parseLong(cursor.getString(2))),
+                cursor.getString(3));
         cursor.close();
         // return contact
         return contact;
@@ -97,6 +100,7 @@ class FavouritesDatabaseHandler extends SQLiteOpenHelper {
                 contact.setID(Integer.parseInt(cursor.getString(0)));
                 contact.setName(cursor.getString(1));
                 contact.setPhoneNumber(Long.parseLong(cursor.getString(2)));
+                contact.setEmail(cursor.getString(3));
                 // Adding contact to list
                 contactList.add(contact);
             } while (cursor.moveToNext());
@@ -113,6 +117,7 @@ class FavouritesDatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, contact.getName());
         values.put(KEY_PH_NO, contact.getPhoneNumber());
+        values.put(KEY_EMAIL, contact.getEmail());
 
         // updating row
         return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?",

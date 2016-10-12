@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void displayFavourites(View view) {
-        Intent displayFavouritesActivity = new Intent(this, DisplayFavouritesActivity.class);
+        Intent displayFavouritesActivity = new Intent(this, DisplayFavourites.class);
         startActivity(displayFavouritesActivity);
     }
 }

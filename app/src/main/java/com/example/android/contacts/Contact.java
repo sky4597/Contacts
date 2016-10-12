@@ -6,6 +6,7 @@ public class Contact {
     private int _id;
     private String _name;
     private long _phone_number;
+    private String _email;
 
     // Empty constructor
     public Contact() {
@@ -13,16 +14,18 @@ public class Contact {
     }
 
     // constructor
-    public Contact(int id, String name, long _phone_number) {
+    public Contact(int id, String name, long _phone_number, String email) {
         this._id = id;
         this._name = name;
         this._phone_number = _phone_number;
+        this._email = email;
     }
 
     // constructor
-    public Contact(String name, long _phone_number) {
+    public Contact(String name, long _phone_number, String _email) {
         this._name = name;
         this._phone_number = _phone_number;
+        this._email = _email;
     }
 
     // getting ID
@@ -53,5 +56,13 @@ public class Contact {
     // setting phone number
     void setPhoneNumber(long phone_number) {
         this._phone_number = phone_number;
+    }
+
+    String getEmail() {
+        return this._email;
+    }
+
+    void setEmail(String email) {
+        this._email = email;
     }
 }
