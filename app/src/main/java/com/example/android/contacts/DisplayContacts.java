@@ -57,7 +57,7 @@ public class DisplayContacts extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
-                String options[] = {"Call", "Message", "Send email"};
+                String options[] = {"Call", "Message", "Send email", "Add to favourites"};
                 //Positions start from 1, IDs from 0
                 final Contact contact = databaseHandler.getContact(position + 1);
                 //Get phone number! This is a contacts app, of course
@@ -115,6 +115,12 @@ public class DisplayContacts extends AppCompatActivity {
                                                 "You do not have an app that can send emails",
                                                 Toast.LENGTH_SHORT).show();
                                     }
+                                } else {
+                                    FavouritesDatabaseHandler favouritesDatabaseHandler = new FavouritesDatabaseHandler(context);
+                                    favouritesDatabaseHandler.addContact(contact);
+                                    Toast.makeText(context,
+                                            "Added to favourites",
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

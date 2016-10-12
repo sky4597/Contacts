@@ -1,8 +1,5 @@
 package com.example.android.contacts;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -27,26 +24,6 @@ public class AddContacts extends AppCompatActivity {
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
         databaseHandler.addContact(new Contact(name, number, email));
         Toast.makeText(this, "New Contact Added", Toast.LENGTH_SHORT).show();
-        final Context context = this;
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Also add to favourites?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        FavouritesDatabaseHandler favouritesDatabaseHandler = new FavouritesDatabaseHandler(context);
-                        favouritesDatabaseHandler.addContact(new Contact(name, number, email));
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // User cancelled the dialog
-                    }
-                });
-
-
-        // create alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        // show it
-        alertDialog.show();
         /*List<Contact> contacts = databaseHandler.getAllContacts();
 
         for (Contact cn : contacts) {
