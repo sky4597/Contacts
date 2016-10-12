@@ -19,12 +19,20 @@ public class AddContacts extends AppCompatActivity {
         EditText phone_editText = (EditText) findViewById(R.id.add_contact_number);
         EditText email_editText = (EditText) findViewById(R.id.add_contact_email);
         final String name = name_editText.getText().toString().trim();
-        //Remove all whitespaces; guess I really shouldn't be using long but whatever
-        final long number = Long.parseLong(phone_editText.getText().toString().replaceAll("\\s+", ""));
-        final String email = email_editText.getText().toString().trim();
-        DatabaseHandler databaseHandler = new DatabaseHandler(this);
-        databaseHandler.addContact(new Contact(name, number, email));
-        Toast.makeText(this, "New Contact Added", Toast.LENGTH_SHORT).show();
+        try {
+            if (name.equals("")) {
+                name_editText.setError("Add Name");
+            } else {
+                //Remove all whitespaces; guess I really shouldn't be using long but whatever
+                final long number = Long.parseLong(phone_editText.getText().toString().replaceAll("\\s+", ""));
+                final String email = email_editText.getText().toString().trim();
+                DatabaseHandler databaseHandler = new DatabaseHandler(this);
+                databaseHandler.addContact(new Contact(name, number, email));
+                Toast.makeText(this, "New Contact Added", Toast.LENGTH_SHORT).show();
+            }
+        } catch (NumberFormatException npe) {
+            phone_editText.setError("Add a number");
+        }
         /*List<Contact> contacts = databaseHandler.getAllContacts();
 
         for (Contact cn : contacts) {
