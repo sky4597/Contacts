@@ -1,7 +1,7 @@
 package com.example.android.contacts;
 
 
-public class Contact {
+class Contact {
 
     // Private variables
     private int _id;
@@ -10,12 +10,12 @@ public class Contact {
     private String _email;
 
     // Empty constructor
-    public Contact() {
+    Contact() {
 
     }
 
     // Constructor
-    public Contact(int id, String name, long _phone_number, String email) {
+    Contact(int id, String name, long _phone_number, String email) {
         this._id = id;
         this._name = name;
         this._phone_number = _phone_number;
@@ -23,7 +23,7 @@ public class Contact {
     }
 
     // Constructor
-    public Contact(String name, long _phone_number, String _email) {
+    Contact(String name, long _phone_number, String _email) {
         this._name = name;
         this._phone_number = _phone_number;
         this._email = _email;

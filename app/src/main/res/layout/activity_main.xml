@@ -20,16 +20,6 @@
         android:onClick="addContact"
         android:text="Add Contact" />
 
-    <!--<Button
-        android:text="Remove Contact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/add_contact_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
-        android:id="@+id/remove_contact_button"
-        android:onClick="removeContact"/>-->
-
     <Button
         android:id="@+id/list_favourites_button"
         android:layout_width="wrap_content"
